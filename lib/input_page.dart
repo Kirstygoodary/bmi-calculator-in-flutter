@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'icon_content.dart';
+import 'reusable_card.dart';
 
 // set variables to avoid repeated code.
 const double bottomContainerHeight = 80.0;
@@ -24,25 +26,31 @@ class _InputPageState extends State<InputPage> {
             child: Row(
               children: [
                 Expanded(
-                  child: ReusableContainer(
+                  child: ReusableCard(
                     colour: containerColor,
-                    cardChild: ReuseableCardChild(),
+                    cardChild: IconContent(
+                      label: 'MALE',
+                      icon: FontAwesomeIcons.mars,
+                    ),
                   ),
                 ),
                 Expanded(
-                    child: ReusableContainer(
+                    child: ReusableCard(
                   colour: containerColor,
-                  cardChild: ReuseableCardChild(),
+                  cardChild: IconContent(
+                    label: 'FEMALE',
+                    icon: FontAwesomeIcons.venus,
+                  ),
                 ))
               ],
             ),
           ),
-          Expanded(child: ReusableContainer(colour: containerColor)),
+          Expanded(child: ReusableCard(colour: containerColor)),
           Expanded(
             child: Row(
               children: [
-                Expanded(child: ReusableContainer(colour: containerColor)),
-                Expanded(child: ReusableContainer(colour: containerColor))
+                Expanded(child: ReusableCard(colour: containerColor)),
+                Expanded(child: ReusableCard(colour: containerColor))
               ],
             ),
           ),
@@ -55,67 +63,6 @@ class _InputPageState extends State<InputPage> {
           ),
         ],
       ),
-    );
-  }
-}
-
-class ReuseableCardChild extends StatelessWidget {
-  // const ReuseableCardChild({
-  //   Key key,
-  // }) : super(key: key);
-
-  ReuseableCardChild({this.text, this.icon});
-
-  final Text text;
-  final FontAwesomeIcons icon;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Icon(FontAwesomeIcons.mars, size: 80.0),
-        SizedBox(
-          height: 15.0,
-        ),
-        Text(
-          'MALE',
-          style: TextStyle(
-            fontSize: 18.0,
-            color: Color(0xff8d8e98),
-          ),
-        )
-      ],
-    );
-  }
-}
-
-class ReusableContainer extends StatelessWidget {
-  // const ReusableContainer({
-  //   Key key,
-  // }) : super(key: key);
-
-  /// Below, we are saying that the continer will
-  /// take the value of {this.colour} and assign it
-  /// to the class Color
-
-  ReusableContainer({@required this.colour, this.cardChild});
-  final Color colour;
-  final Widget cardChild;
-
-  // final makes the property immutable
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: cardChild,
-      height: 200.0,
-      width: 170.0,
-      margin: EdgeInsets.all(15.0),
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10.0),
-          color: colour), //here we are making the corners more rounded
-      // and adding the colour
     );
   }
 }
